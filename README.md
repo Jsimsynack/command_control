@@ -7,3 +7,7 @@
 - Uses Assymetric Key to transmit Symmetric key to CC server
 - Runs commands from server
 - Transmits encrypted results 
+
+## key.txt
+- Contains hashed password for authentication
+- Utilizes SHA256 hashing protocol
