@@ -68,7 +68,7 @@ def run_commands(data: dict) -> dict:
             continue
     return results
 
-def main(passw: str, failed_msg: str ):
+def main(passw: str, failed_msg: str) -> None:
 
     # Hashing password
     passwd_hash = hashlib.sha256(passw.encode("utf-8")).hexdigest()
